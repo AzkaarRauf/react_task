@@ -23,6 +23,9 @@ export async function login(req: Request<null, null, AuthBody>, res: Response, n
     if (ValidationRegex.validateEmail(email).failed) {
         errors.email = 'Invalid email'
     }
+    if (ValidationRegex.validatePassword(password).failed) {
+        errors.password = 'Password must be at least 6 characters long'
+    }
     if (Object.keys(errors).length > 0) {
         return sendError(res, 422, 'Validation failed', errors)
     }
@@ -33,7 +36,7 @@ export async function login(req: Request<null, null, AuthBody>, res: Response, n
         return next(user)
     }
     if (!user || user.password !== password) {
-        return sendError(res, 401, 'Invalid email or password', new Error('Invalid email or password'))
+        return sendError(res, 401, 'Invalid email or password', { email: 'Invalid email or password' })
     }
 
     // Create token
@@ -43,4 +46,41 @@ export async function login(req: Request<null, null, AuthBody>, res: Response, n
     }
 
     return sendSuccess(res, 'Login successful', { token })
+}
+
+export async function register(req: Request<null, null, AuthBody>, res: Response, next: NextFunction) {
+    const { email, password } = req.body
+
+    // Validate body
+    const errors = {} as Record<string, any>
+    if (!email) {
+        errors.email = 'Email is required'
+    }
+    if (!password) {
+        errors.password = 'Password is required'
+    }
+    if (ValidationRegex.validateEmail(email).failed) {
+        errors.email = 'Invalid email'
+    }
+    if (ValidationRegex.validatePassword(password).failed) {
+        errors.password = 'Password must be at least 6 characters long'
+    }
+    if (Object.keys(errors).length > 0) {
+        return sendError(res, 422, 'Validation failed', errors)
+    }
+
+    // Save user to database
+    const result = await UserRepo.add(email, password)
+    if (result instanceof Error) {
+        return next(result)
+    }
+
+    // Check if user was saved
+    if (result.affectedRows === 0) {
+        return sendError(res, 500, 'Failed to register user. Please try again.', {
+            error: 'Something went wrong',
+        })
+    }
+
+    return sendSuccess(res, 'User registered successfully')
 }

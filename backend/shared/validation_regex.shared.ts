@@ -7,4 +7,12 @@ export default class ValidationRegex {
             failed: !succeeded,
         }
     }
+
+    static validatePassword(password: string) {
+        const succeeded = password.length >= 6
+        return {
+            succeeded,
+            failed: !succeeded,
+        }
+    }
 }
