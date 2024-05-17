@@ -20,6 +20,9 @@ export async function login(req: Request<null, null, AuthBody>, res: Response, n
     if (!password) {
         errors.password = 'Password is required'
     }
+    if (Object.keys(errors).length > 0) {
+        return sendError(res, 422, 'Validation failed', errors)
+    }
     if (ValidationRegex.validateEmail(email).failed) {
         errors.email = 'Invalid email'
     }
@@ -59,6 +62,9 @@ export async function register(req: Request<null, null, AuthBody>, res: Response
     if (!password) {
         errors.password = 'Password is required'
     }
+    if (Object.keys(errors).length > 0) {
+        return sendError(res, 422, 'Validation failed', errors)
+    }
     if (ValidationRegex.validateEmail(email).failed) {
         errors.email = 'Invalid email'
     }
@@ -67,6 +73,16 @@ export async function register(req: Request<null, null, AuthBody>, res: Response
     }
     if (Object.keys(errors).length > 0) {
         return sendError(res, 422, 'Validation failed', errors)
+    }
+
+    // Check if user already exists
+    const user = await UserRepo.getByEmail(email)
+    if (user instanceof Error) {
+        return next(user)
+    }
+
+    if (user) {
+        return sendError(res, 409, 'User already exists', { email: 'User already exists' })
     }
 
     // Save user to database
