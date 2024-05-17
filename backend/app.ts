@@ -1,22 +1,21 @@
 import express from 'express'
 import cors from 'cors'
 import errorHandler from './middleware/error_handler'
-import SqlHandler from './helpers/sql_handler'
+import SqlHandler from './shared/sql_handler.shared'
+import authRouter from './routes/auth.route'
 
 const app = express()
 
 // Add cors middleware
 app.use(cors())
 
-app.get('/', async (req, res, next) => {
-    const sql = new SqlHandler()
+// Add json middleware
+app.use(express.json())
+// Add urlencoded middleware
+app.use(express.urlencoded({ extended: true }))
 
-    sql.query = 'SELECT * FROM users'
-
-    const data = await sql.getOne([])
-
-    res.json(data)
-})
+// Register routes
+app.use('/auth', authRouter)
 
 app.get('/no-error', (req, res, next) => {
     res.send('No error')

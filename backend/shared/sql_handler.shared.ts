@@ -29,7 +29,7 @@ export default class SqlHandler {
         return data[0] ?? null
     }
 
-    async post(params: any[]) {
+    async exec(params: any[]) {
         const [data] = await this.pool
             .query<ResultSetHeader>(this.query, params)
             .catch(err => [err] as Error[])
