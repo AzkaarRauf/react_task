@@ -8,7 +8,7 @@ export default function TopBar() {
       {/* <div className="fixed   bg-cyan-300 w-screen h-16">
         <h1 className="ml-56">hello</h1>
       </div> */}
-      <div className="navbar bg-base-100 pl-56">
+      <div className="navbar bg-base-200 pl-56">
         <div className="navbar-start">
           <button
             onClick={() => navigate(-1)}

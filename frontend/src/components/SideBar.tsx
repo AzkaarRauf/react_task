@@ -35,7 +35,7 @@ function SideBar() {
     //   </div>
     // </div>
 
-    <div className="navbar bg-base-200 h-screen fixed w-52 flex-col">
+    <div className="navbar bg-base-100 h-screen fixed w-52 flex-col">
       <a className="btn btn-ghost text-xl">daisyUI</a>
 
       <MyNavLink to="/dashboard">Dashboard</MyNavLink>
