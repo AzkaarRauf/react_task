@@ -86,7 +86,7 @@ export default function TopTokens() {
             <i className="fa-solid fa-angle-right pl-4"></i>
           </Link>
         </h2>
-        <div className="overflow-x-auto p-2">
+        <div className="p-2">
           <table className="table">
             <tbody>
               {data.map((token, index) => (
