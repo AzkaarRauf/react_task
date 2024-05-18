@@ -11,14 +11,14 @@ export default function GreedIndex() {
           <i className="fa-solid fa-angle-right pl-4"></i>
         </Link>
       </h2>
-      <div className="p-2">
+      <div className="p-2 flex justify-center">
         <GaugeChart
           percent={Math.random()}
           formatTextValue={value => value}
           textColor="black"
           nrOfLevels={4}
           colors={["red", "orange", "purple", "green"]}
-          style={{ width: "100%", height: 10 }}
+          style={{ width: "80%", height: 10 }}
         />
       </div>
     </div>

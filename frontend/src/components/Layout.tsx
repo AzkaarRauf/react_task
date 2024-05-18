@@ -6,7 +6,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <>
       <SideBar />
       <TopBar />
-      <div className="pl-64 pt-11 h-full min-h-screen pb-4">{children}</div>
+      <div className="pl-64 h-full min-h-screen pb-4">{children}</div>
     </>
   )
 }

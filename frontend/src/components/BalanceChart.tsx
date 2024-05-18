@@ -27,7 +27,6 @@ export default function BalanceChart() {
         <Tooltip />
         <XAxis
           tickLine={false}
-          className=""
           dataKey="name"
           axisLine={{ stroke: "#e0e0e0" }}
           tick={{ fill: "#b5bcc4", fontSize: 12 }}
