@@ -1,3 +1,10 @@
+import RenderLineChart from "../components/LineChart"
+
 export default function Dashboard() {
-  return <h1>Dashboard</h1>
+  return (
+    <div className="w-full">
+      Line Chart
+      <RenderLineChart />
+    </div>
+  )
 }
