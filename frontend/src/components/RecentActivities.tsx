@@ -33,8 +33,8 @@ const data = [
   {
     isProfit: false,
     id: "Ox0328ahofsu890woi4rj",
-    status: "Pending",
-    valueCrypto: 3.22874598274598,
+    status: "Completed",
+    valueCrypto: -3.22874598274598,
     valueUSD: 192487,
     logo: lossSvg,
     symbol: "ETH",
