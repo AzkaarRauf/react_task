@@ -1,14 +1,19 @@
-import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { useLocation, useNavigate } from "react-router-dom"
+import _ from "lodash"
 
 export default function TopBar() {
   const navigate = useNavigate()
+  const [pageTitle, setPageTitle] = useState("Home")
+  const location = useLocation()
+
+  useEffect(() => {
+    setPageTitle(location.pathname.replace("/", "").replace("-", " "))
+  }, [location.pathname])
 
   return (
     <>
-      {/* <div className="fixed   bg-cyan-300 w-screen h-16">
-        <h1 className="ml-56">hello</h1>
-      </div> */}
-      <div className="navbar bg-base-200 pl-56">
+      <div className="navbar bg-base-200 pl-64">
         <div className="navbar-start">
           <button
             onClick={() => navigate(-1)}
@@ -20,27 +25,9 @@ export default function TopBar() {
               className="h-6 w-6"
             />
           </button>
-
-          {/* <button className="btn btn-circle btn-outline">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button> */}
+          <h1 className="card-title capitalize ">{pageTitle}</h1>
         </div>
-        <div className="navbar-center">
-          <a className="btn btn-ghost text-xl">daisyUI</a>
-        </div>
+        <div className="navbar-center"></div>
         <div className="navbar-end">
           <button className="btn btn-ghost btn-circle">
             <svg

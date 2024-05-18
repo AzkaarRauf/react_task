@@ -25,18 +25,8 @@ function MyNavLink({
 
 function SideBar() {
   return (
-    // <div className="fixed justify-center h-screen bg-white w-52">
-    //   <div className="my-4">
-    //     <div>Logo</div>
-    //   </div>
-    //   <div className="mx-2 ">
-    //     <MyNavLink to="/dashboard">Dashboard</MyNavLink>
-    //     <MyNavLink to="/settings">Settings</MyNavLink>
-    //   </div>
-    // </div>
-
-    <div className="navbar bg-base-100 h-screen fixed w-52 flex-col">
-      <a className="btn btn-ghost text-xl">daisyUI</a>
+    <div className="navbar bg-base-100 h-screen fixed w-60 flex-col">
+      <h1 className="text-xl">daisyUI</h1>
 
       <MyNavLink to="/dashboard">Dashboard</MyNavLink>
       <MyNavLink to="/settings">Settings</MyNavLink>
