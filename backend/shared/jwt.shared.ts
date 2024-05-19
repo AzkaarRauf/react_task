@@ -23,3 +23,22 @@ export const generateToken = (tokenData: TokenData, exp: string = '1h') => {
         return err as Error
     }
 }
+
+/**
+ * Verify a token
+ * @param token Token to be verified
+ */
+export const verifyToken = (token: string) => {
+    try {
+        const result = jwt.verify(token, secret) as any
+        const tokenData: TokenData = {
+            id: result.id,
+            email: result.email
+        }
+
+        
+        return tokenData
+    } catch (err) {
+        return err as Error
+    }
+}

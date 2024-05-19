@@ -48,7 +48,14 @@ export async function login(req: Request<null, null, AuthBody>, res: Response, n
         return next(token)
     }
 
-    return sendSuccess(res, 'Login successful', { token })
+    return sendSuccess(res, 'Login successful', { token, email: user.email, id: user.id })
+}
+
+export async function isLoggedIn(req: Request, res: Response) {
+    return sendSuccess(res, 'User is logged in', {
+        ...res.locals.user,
+        token: req.header('Authorization')?.split(' ')[1],
+    })
 }
 
 export async function register(req: Request<null, null, AuthBody>, res: Response, next: NextFunction) {

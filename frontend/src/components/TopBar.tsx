@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import _ from "lodash"
+import { nullUser, useUserContext } from "../context"
 
 export default function TopBar() {
   const navigate = useNavigate()
   const [pageTitle, setPageTitle] = useState("Home")
   const location = useLocation()
+  const [_, setUser] = useUserContext()
 
   useEffect(() => {
     setPageTitle(location.pathname.replace("/", "").replace("-", " "))
@@ -15,10 +17,7 @@ export default function TopBar() {
     <>
       <div className="navbar bg-base-200 pl-64">
         <div className="navbar-start">
-          <button
-            onClick={() => navigate(-1)}
-            className="btn btn-circle btn-ghost "
-          >
+          <button onClick={() => navigate(-1)} className="btn btn-circle btn-ghost ">
             <img
               src="https://www.svgrepo.com/download/305377/arrow-back.svg"
               alt="back-button"
@@ -63,6 +62,9 @@ export default function TopBar() {
               </svg>
               <span className="badge badge-xs badge-primary indicator-item"></span>
             </div>
+          </button>
+          <button className="btn btn-ghost " onClick={() => setUser(nullUser)}>
+            Logout
           </button>
         </div>
       </div>
