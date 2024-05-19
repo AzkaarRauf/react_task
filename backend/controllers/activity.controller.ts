@@ -8,7 +8,7 @@ const data = [
         status: 'Completed',
         valueCrypto: 3.22874598274598,
         valueUSD: 192487,
-        logo: 'http://localhost:5173/src/assets/top-right.svg',
+        logo: 'https://utfs.io/f/d56f9560-4f1b-487e-a247-a025bf29b50f-lqugd8.svg',
         symbol: 'ETH',
     },
     {
@@ -17,7 +17,7 @@ const data = [
         status: 'Pending',
         valueCrypto: 3.22874598274598,
         valueUSD: 192487,
-        logo: 'http://localhost:5173/src/assets/bottom-left.svg',
+        logo: 'https://utfs.io/f/ecc76c52-47b8-43cf-806e-510bb56b2ac1-au6xlj.svg',
         symbol: 'ETH',
     },
     {
@@ -26,7 +26,7 @@ const data = [
         status: 'Pending',
         valueCrypto: 3.22874598274598,
         valueUSD: 192487,
-        logo: 'http://localhost:5173/src/assets/bottom-left.svg',
+        logo: 'https://utfs.io/f/ecc76c52-47b8-43cf-806e-510bb56b2ac1-au6xlj.svg',
         symbol: 'ETH',
     },
     {
@@ -35,7 +35,7 @@ const data = [
         status: 'Completed',
         valueCrypto: -3.22874598274598,
         valueUSD: 192487,
-        logo: 'http://localhost:5173/src/assets/top-right.svg',
+        logo: 'https://utfs.io/f/d56f9560-4f1b-487e-a247-a025bf29b50f-lqugd8.svg',
         symbol: 'ETH',
     },
 ]
