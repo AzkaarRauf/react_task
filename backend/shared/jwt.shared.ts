@@ -15,7 +15,7 @@ if (!secret) {
  * @param tokenData Data to be stored in the token
  * @param exp Expiration time
  */
-export const generateToken = (tokenData: TokenData, exp: string = '1h') => {
+export const generateToken = (tokenData: TokenData, exp: string = '1d') => {
     try {
         const token = jwt.sign(tokenData, secret, { expiresIn: exp })
         return token

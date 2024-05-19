@@ -5,7 +5,7 @@ export default class BalanceHistoryRepo {
     static async getAllByUserId(userId: number) {
         const sql = new SqlHandler()
 
-        sql.query = 'SELECT * FROM balance_history WHERE user_id = ? ORDER BY id DESC'
+        sql.query = 'SELECT * FROM balance_history WHERE user_id = ? ORDER BY date'
 
         const data = await sql.getAll([userId])
         if (data instanceof Error) {
@@ -17,5 +17,15 @@ export default class BalanceHistoryRepo {
         })
 
         return balanceHistory
+    }
+
+    static async addBalanceHistory(userId: number, balance: number, date: Date) {
+        const sql = new SqlHandler()
+
+        sql.query = 'INSERT INTO balance_history (user_id, balance, date) VALUES (?, ?, ?)'
+
+        const data = await sql.exec([userId, balance, date])
+
+        return data
     }
 }

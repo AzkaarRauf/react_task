@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { SetUserContext, User, UserContext } from "../context"
 import _ from "lodash"
 import { StdResponse } from "../types/types"
@@ -21,6 +21,7 @@ export default function AuthContext({ children }: { children: ReactNode }) {
 
   const [user, setUser] = useState<User>(userData)
   const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     // Get user from local storage
@@ -53,7 +54,9 @@ export default function AuthContext({ children }: { children: ReactNode }) {
 
       if (response.success) {
         localStorage.setItem("user", JSON.stringify({ ...response.data }))
-        navigate("/dashboard")
+        if (location.pathname.toLowerCase().includes("/auth")) {
+          navigate("/dashboard")
+        }
       } else {
         localStorage.removeItem("user")
         navigate("/auth/login")

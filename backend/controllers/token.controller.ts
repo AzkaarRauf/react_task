@@ -6,7 +6,7 @@ export async function getTopTokens(req: Request, res: Response, next: NextFuncti
         {
             name: 'Ripple',
             symbol: 'XRP',
-            price: '172',
+            price: '233',
             logo: 'https://www.svgrepo.com/download/428643/ripple-xrp-crypto.svg',
             data: [
                 { amt: 312 },
@@ -15,15 +15,15 @@ export async function getTopTokens(req: Request, res: Response, next: NextFuncti
                 { amt: 401 },
                 { amt: 264 },
                 { amt: 498 },
-                { amt: 172 },
+                { amt: 233 },
             ],
-            isProfit: parseFloat('172') > 312,
-            percentDiff: ((parseFloat('172') - 312) / 312) * 100,
+            isProfit: false,
+            percentDiff: ((parseFloat('233') - 312) / 233) * 100,
         },
         {
             name: 'Ethereum',
             symbol: 'ETH',
-            price: '3,200',
+            price: '172',
             logo: 'https://www.svgrepo.com/download/428624/ethereum-crypto-cryptocurrency-2.svg',
             data: [
                 { amt: 312 },
@@ -34,14 +34,14 @@ export async function getTopTokens(req: Request, res: Response, next: NextFuncti
                 { amt: 498 },
                 { amt: 172 },
             ],
-            isProfit: parseFloat('172') > 312,
-            percentDiff: ((parseFloat('172') - 312) / 312) * 100,
+            isProfit: false,
+            percentDiff: ((parseFloat('172') - 312) / 172) * 100,
         },
         {
             name: 'Solana',
             symbol: 'SOL',
             logo: 'https://www.svgrepo.com/download/470684/solana.svg',
-            price: '192',
+            price: '496',
             data: [
                 { amt: 322 },
                 { amt: 211 },
@@ -51,8 +51,8 @@ export async function getTopTokens(req: Request, res: Response, next: NextFuncti
                 { amt: 305 },
                 { amt: 496 },
             ],
-            isProfit: parseFloat('192') > 456,
-            percentDiff: ((parseFloat('192') - 456) / 456) * 100,
+            isProfit: true,
+            percentDiff: ((496 - 322) / 496) * 100,
         },
     ])
 }

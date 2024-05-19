@@ -26,10 +26,10 @@ function MyNavLink({
 function SideBar() {
   return (
     <div className="navbar bg-base-100 h-screen fixed w-60 flex-col">
-      <h1 className="text-xl">daisyUI</h1>
-
       <MyNavLink to="/dashboard">Dashboard</MyNavLink>
-      <MyNavLink to="/settings">Settings</MyNavLink>
+      <MyNavLink to="/balance-history">Balance History</MyNavLink>
+
+      {/* THEME SWITCH */}
       <label className="flex cursor-pointer gap-2 fixed bottom-0 m-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -45,11 +45,7 @@ function SideBar() {
           <circle cx="12" cy="12" r="5" />
           <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
         </svg>
-        <input
-          type="checkbox"
-          value="dark"
-          className="toggle theme-controller"
-        />
+        <input type="checkbox" value="dark" className="toggle theme-controller" />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"

@@ -7,5 +7,6 @@ const balanceHistoryRouter = Router()
 balanceHistoryRouter.use(authMiddleware)
 
 balanceHistoryRouter.get('/', balanceHistoryController.getBalanceHistory)
+balanceHistoryRouter.post('/', balanceHistoryController.addBalanceHistory)
 
 export default balanceHistoryRouter
