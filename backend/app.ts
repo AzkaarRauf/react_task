@@ -26,6 +26,10 @@ app.use('/activities', activityRouter)
 // Register error handler
 app.use(errorHandler)
 
-app.listen(8090, () => {
-    console.log('Server is running on http://localhost:8090')
-})
+if (!process.env.IS_NETLIFY) {
+    app.listen(8090, () => {
+        console.log('Server is running on http://localhost:8090')
+    })
+}
+
+export default app
