@@ -5,6 +5,7 @@ import AddBalanceHistory from "./AddBalanceHistory"
 
 export default function BalanceHistory() {
   const [data, setData] = useState([] as any[])
+  const [loading, setLoading] = useState(false)
   const [user] = useUserContext()
   const location = useLocation()
 
@@ -16,6 +17,7 @@ export default function BalanceHistory() {
     const abortController = new AbortController()
     const signal = abortController.signal
 
+    setLoading(true)
     fetch(`${import.meta.env.VITE_API_BASE_URL}/balance-history`, {
       method: "GET",
       headers: {
@@ -27,6 +29,7 @@ export default function BalanceHistory() {
       .then(res => res.json())
       .then(data => {
         setData(data.data)
+        setLoading(false)
       })
       .catch(err => console.error(err))
 
@@ -42,6 +45,7 @@ export default function BalanceHistory() {
         Add Balance
       </Link>
       <table className="table">
+        {loading && <span className="loading loading-dots loading-sm"></span>}
         {/* head */}
         <thead>
           <tr>
