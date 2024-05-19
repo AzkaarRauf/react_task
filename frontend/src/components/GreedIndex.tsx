@@ -1,7 +1,36 @@
 import { Link } from "react-router-dom"
 import GaugeChart from "react-gauge-chart"
+import { useUserContext } from "../context"
+import { useEffect, useState } from "react"
 
 export default function GreedIndex() {
+  const [user] = useUserContext()
+  const [value, setValue] = useState(0)
+
+  useEffect(() => {
+    const abortController = new AbortController()
+    const signal = abortController.signal
+
+    ;(async () => {
+      const response = await fetch("http://localhost:8090/tokens/greed-index", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+        signal,
+      })
+        .then(res => res.json())
+        .catch(err => err as Error)
+
+      if (response.success) {
+        setValue(response.data.value)
+      }
+    })()
+
+    return () => abortController.abort()
+  }, [])
+
   return (
     <div>
       <h2 className="card-title px-4 justify-between">
@@ -13,7 +42,7 @@ export default function GreedIndex() {
       </h2>
       <div className="p-2 flex justify-center">
         <GaugeChart
-          percent={Math.random()}
+          percent={value / 100}
           formatTextValue={value => value}
           textColor="black"
           nrOfLevels={4}

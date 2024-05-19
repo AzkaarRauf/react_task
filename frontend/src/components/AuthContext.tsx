@@ -11,7 +11,15 @@ const nullUser = {
 }
 
 export default function AuthContext({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User>(nullUser)
+  const localUser = localStorage.getItem("user")
+  let userData: User = nullUser
+  if (localUser) {
+    try {
+      userData = JSON.parse(localUser)
+    } catch {}
+  }
+
+  const [user, setUser] = useState<User>(userData)
   const navigate = useNavigate()
 
   useEffect(() => {

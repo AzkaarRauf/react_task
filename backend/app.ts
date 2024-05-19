@@ -2,6 +2,8 @@ import express from 'express'
 import cors from 'cors'
 import errorHandler from './middleware/error_handler'
 import authRouter from './routes/auth.route'
+import balanceHistoryRouter from './routes/balance_history.route'
+import tokenRouter from './routes/token.route'
 
 const app = express()
 
@@ -16,6 +18,8 @@ app.use(express.urlencoded({ extended: true }))
 
 // Register routes
 app.use('/auth', authRouter)
+app.use('/balance-history', balanceHistoryRouter)
+app.use('/tokens', tokenRouter)
 
 // Register error handler
 app.use(errorHandler)

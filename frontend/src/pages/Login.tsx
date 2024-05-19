@@ -70,7 +70,7 @@ export default function Login() {
                 </div>
                 <div className="form-control mt-6">
                   <button className="btn btn-primary" type="submit" disabled={isSubmitting}>
-                    Login
+                    {isSubmitting ? <span className="loading loading-dots loading-sm"></span> : "Login"}
                   </button>
                 </div>
               </Form>

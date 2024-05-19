@@ -1,7 +1,7 @@
 import { AreaChart, Area, ResponsiveContainer, Tooltip, XAxis } from "recharts"
 import { useUserContext } from "../context"
 import { useEffect, useState } from "react"
-const data = [
+const data_ = [
   { name: "Sep", uv: 250, pv: 2400, amt: 2400 },
   { name: "Oct", uv: 250, pv: 2400, amt: 2400 },
   { name: "Nov", uv: 200, pv: 2500, amt: 2600 },
@@ -17,12 +17,16 @@ export default function BalanceChart() {
   const [data, setData] = useState([])
 
   useEffect(() => {
+    const abortController = new AbortController()
+    const signal = abortController.signal
+
     const getBalanceData = async () => {
-      const response = await fetch("http://localhost:8090/balance", {
+      const response = await fetch("http://localhost:8090/balance-history", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
+        signal,
       })
         .then(res => res.json())
         .catch(err => err as Error)
@@ -30,9 +34,15 @@ export default function BalanceChart() {
       if (response.success) {
         console.log(response.data)
       }
+
+      return response.data
     }
 
-    getBalanceData()
+    getBalanceData().then(data =>
+      setData(data.map((d: any) => ({ ...d, date: new Date(d.date).toDateString() })))
+    )
+
+    return () => abortController.abort()
   }, [])
 
   return (
@@ -47,11 +57,11 @@ export default function BalanceChart() {
         <Tooltip />
         <XAxis
           tickLine={false}
-          dataKey="name"
+          dataKey="date"
           axisLine={{ stroke: "#e0e0e0" }}
           tick={{ fill: "#b5bcc4", fontSize: 12 }}
         />
-        <Area type="monotone" dataKey="uv" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+        <Area type="monotone" dataKey="balance" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
       </AreaChart>
     </ResponsiveContainer>
   )

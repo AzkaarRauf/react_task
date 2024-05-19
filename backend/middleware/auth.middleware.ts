@@ -3,7 +3,7 @@ import { sendError } from '../shared/std_response.shared'
 import { TokenData } from '../types/types'
 import { verifyToken } from '../shared/jwt.shared'
 
-export async function auth(req: Request, res: Response, next: NextFunction) {
+export async function authMiddleware(req: Request, res: Response, next: NextFunction) {
     // get token from header
     const token = req.header('Authorization')?.split(' ')[1]
 
