@@ -1,16 +1,6 @@
 import { AreaChart, Area, ResponsiveContainer, Tooltip, XAxis } from "recharts"
 import { useUserContext } from "../context"
 import { useEffect, useState } from "react"
-const data_ = [
-  { name: "Sep", uv: 250, pv: 2400, amt: 2400 },
-  { name: "Oct", uv: 250, pv: 2400, amt: 2400 },
-  { name: "Nov", uv: 200, pv: 2500, amt: 2600 },
-  { name: "Dec", uv: 300, pv: 2400, amt: 2400 },
-  { name: "Jan", uv: 370, pv: 2400, amt: 2400 },
-  { name: "Feb", uv: 280, pv: 2500, amt: 2450 },
-  { name: "Mar", uv: 400, pv: 2400, amt: 2400 },
-  { name: "Apr", uv: 200, pv: 2500, amt: 2600 },
-]
 
 export default function BalanceChart() {
   const [user] = useUserContext()
