@@ -1,6 +1,7 @@
 export default class Activity {
     constructor(
-        public id: string,
+        public id: number,
+        public userId: number,
         public status: string,
         public valueCrypto: number,
         public valueUSD: number,

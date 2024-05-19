@@ -12,7 +12,7 @@ export default class SqlHandler {
 
     async getAll(params: any[]) {
         const [data] = await this.pool
-            .query<RowDataPacket[]>(this.query + ' LIMIt 1', params)
+            .query<RowDataPacket[]>(this.query, params)
             .catch(err => [err] as Error[])
 
         return data

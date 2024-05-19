@@ -3,13 +3,6 @@ import TokenLineChart from "./TokenLineChart"
 import { useEffect, useState } from "react"
 import { useUserContext } from "../context"
 
-function randomBetween(min: number, max: number) {
-  return Math.floor(Math.random() * (max - min) + min)
-}
-
-const maxNum = 500
-const minNum = 100
-
 export default function TopTokens() {
   const [user] = useUserContext()
   const [data, setData] = useState([] as any[])
