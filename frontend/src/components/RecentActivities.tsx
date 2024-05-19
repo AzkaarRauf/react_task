@@ -1,52 +1,39 @@
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import profitSvg from "../assets/top-right.svg"
-import lossSvg from "../assets/bottom-left.svg"
-
-const data = [
-  {
-    isProfit: false,
-    id: "Ox0328ahofsu890woi4rj",
-    status: "Completed",
-    valueCrypto: 3.22874598274598,
-    valueUSD: 192487,
-    logo: profitSvg,
-    symbol: "ETH",
-  },
-  {
-    isProfit: false,
-    id: "Ox0328ahofsu890woi4rj",
-    status: "Pending",
-    valueCrypto: 3.22874598274598,
-    valueUSD: 192487,
-    logo: lossSvg,
-    symbol: "ETH",
-  },
-  {
-    isProfit: false,
-    id: "Ox0328ahofsu890woi4rj",
-    status: "Pending",
-    valueCrypto: 3.22874598274598,
-    valueUSD: 192487,
-    logo: lossSvg,
-    symbol: "ETH",
-  },
-  {
-    isProfit: false,
-    id: "Ox0328ahofsu890woi4rj",
-    status: "Completed",
-    valueCrypto: -3.22874598274598,
-    valueUSD: 192487,
-    logo: lossSvg,
-    symbol: "ETH",
-  },
-]
+import { useUserContext } from "../context"
 
 export default function RecentActivities() {
+  const [data, setData] = useState([])
+  const [user] = useUserContext()
+
+  useEffect(() => {
+    const abortController = new AbortController()
+    const signal = abortController.signal
+
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/activities/recent`, {
+      method: "GET",
+      signal,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
+    })
+      .then(res => res.json())
+      .then(res => {
+        setData(res.data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+
+    return () => abortController.abort()
+  }, [])
+
   return (
     <>
       <div>
         <h2 className="card-title px-4 justify-between">
-          Top Tokens
+          Recent Activities
           <Link to={"#"} className="link link-hover  text-base text-blue-700">
             See all
             <i className="fa-solid fa-angle-right pl-4"></i>
@@ -55,7 +42,7 @@ export default function RecentActivities() {
         <div className="p-2">
           <table className="table">
             <tbody>
-              {data.map((row, index) => (
+              {data.map((row: any, index) => (
                 <tr key={index} className="border-none ">
                   {/* LOGO */}
                   <td className=" min-w-16 max-w-16">
@@ -67,9 +54,7 @@ export default function RecentActivities() {
                     <div className="font-bold min-w-10">{row.id}</div>
                     <div
                       className={`font-semibold ${
-                        row.status === "Completed"
-                          ? "text-green-500"
-                          : "text-yellow-500"
+                        row.status === "Completed" ? "text-green-500" : "text-yellow-500"
                       }`}
                     >
                       {row.status}

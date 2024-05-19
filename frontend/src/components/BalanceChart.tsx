@@ -21,7 +21,7 @@ export default function BalanceChart() {
     const signal = abortController.signal
 
     const getBalanceData = async () => {
-      const response = await fetch("http://localhost:8090/balance-history", {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/balance-history`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${user.token}`,

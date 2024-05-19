@@ -4,6 +4,7 @@ import errorHandler from './middleware/error_handler'
 import authRouter from './routes/auth.route'
 import balanceHistoryRouter from './routes/balance_history.route'
 import tokenRouter from './routes/token.route'
+import activityRouter from './routes/activity.route'
 
 const app = express()
 
@@ -20,6 +21,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/auth', authRouter)
 app.use('/balance-history', balanceHistoryRouter)
 app.use('/tokens', tokenRouter)
+app.use('/activities', activityRouter)
 
 // Register error handler
 app.use(errorHandler)

@@ -42,7 +42,7 @@ export default function AuthContext({ children }: { children: ReactNode }) {
   // Verify user is logged in
   useEffect(() => {
     const validate = async () => {
-      const response: StdResponse = await fetch("http://localhost:8090/auth/isLoggedIn", {
+      const response: StdResponse = await fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/isLoggedIn`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${user.token}`,

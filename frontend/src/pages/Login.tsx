@@ -22,7 +22,7 @@ export default function Login() {
             validationSchema={validationSchema}
             initialValues={{ email: "", password: "" }}
             onSubmit={async (values, helpers) => {
-              const response = await fetch("http://localhost:8090/auth/login", {
+              const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/login`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",

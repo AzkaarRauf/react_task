@@ -19,7 +19,7 @@ export default function TopTokens() {
     const signal = abortController.signal
 
     ;(async () => {
-      const response = await fetch("http://localhost:8090/tokens/top-tokens", {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/tokens/top-tokens`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

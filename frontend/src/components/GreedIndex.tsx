@@ -12,7 +12,7 @@ export default function GreedIndex() {
     const signal = abortController.signal
 
     ;(async () => {
-      const response = await fetch("http://localhost:8090/tokens/greed-index", {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/tokens/greed-index`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
