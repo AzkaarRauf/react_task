@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import TokenLineChart from "./TokenLineChart"
 import { useEffect, useState } from "react"
 import { useUserContext } from "../context"
+import { signalHasNotification } from "../signals/notification.signal"
 
 export default function TopTokens() {
   const [user] = useUserContext()
@@ -36,7 +37,11 @@ export default function TopTokens() {
       <div>
         <h2 className="card-title px-4 justify-between">
           Top Tokens
-          <Link to={"#"} className="link link-hover  text-base text-blue-700">
+          <Link
+            onClick={() => (signalHasNotification.value = !signalHasNotification.value)}
+            to={"#"}
+            className="link link-hover  text-base text-blue-700"
+          >
             See all
             <i className="fa-solid fa-angle-right pl-4"></i>
           </Link>

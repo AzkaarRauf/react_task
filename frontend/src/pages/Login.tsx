@@ -9,7 +9,9 @@ const validationSchema = yup.object({
 })
 
 export default function Login() {
-  const [_, setUser] = useUserContext()
+  const [user, setUser] = useUserContext()
+
+  user
 
   return (
     <div className="h-screen  grid grid-cols-3 justify-center content-center">
